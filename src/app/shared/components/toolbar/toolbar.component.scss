@@ -1,0 +1,14 @@
+.toolbar {
+  display: flex;           /* Omogućite Flexbox */
+  justify-content: space-between; /* Rasporedite elemente sa razmakom */
+  align-items: center;     /* Poravnajte elemente po sredini */
+}
+
+.title {
+  margin-right: auto;      /* Pomerite naziv toolbar-a ulevo */
+}
+
+.button-container {
+  display: flex;           /* Omogućite Flexbox unutar dugmet-container-a */
+  align-items: center;     /* Poravnajte dugme po sredini */
+}

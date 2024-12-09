@@ -1,0 +1,23 @@
+<mat-card class="p20">
+  <mat-card-title>Take Note</mat-card-title>
+  <mat-card-content *ngIf="form">
+    <form [formGroup]="form" class="form-container" (ngSubmit)="onSubmit($event)">
+      <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="Title" formControlName="title">
+        <mat-error *ngIf="form.get('title')?.hasError('required')">
+          Title is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Content</mat-label>
+        <textarea matInput placeholder="Content" formControlName="content"></textarea>
+        <mat-error *ngIf="form.get('content')?.hasError('required')">
+          Content is required
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="button" (click)="close()">Cancel</button>
+      <button *ngIf="!readOnly" [disabled]="form.invalid || form.pristine" mat-raised-button color="primary" type="submit">Save</button>
+    </form>
+  </mat-card-content>
+</mat-card>
