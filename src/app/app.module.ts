@@ -20,6 +20,7 @@ import {MatCellDef, MatHeaderCellDef, MatTable, MatTableModule} from '@angular/m
 import {MatIcon} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {ToolbarComponent} from './shared/components/toolbar/toolbar.component';
+import {ConfirmDialogComponent} from './shared/components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {ToolbarComponent} from './shared/components/toolbar/toolbar.component';
     LoginComponent,
     NoteComponent,
     NoteDialogComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,

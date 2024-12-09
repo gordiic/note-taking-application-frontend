@@ -43,7 +43,9 @@ export abstract class BaseDialogComponent<T extends BaseModel> {
 
   onSubmit(event: any): void {
     const o: Observable<T> = this.submitData();
-    o.subscribe((data) => this.close(data));
+    o.subscribe((data) => {
+      this.close(data)
+    });
   }
 
   protected submitData(): Observable<T> {

@@ -32,4 +32,8 @@ export class NoteComponent extends BaseComponent<Note>{
   onDetails(id: string): void {
     this.details({ id: id, readOnly: true})
   }
+
+  onDelete(id: string): void {
+    this.deleteEntity(id)
+  }
 }

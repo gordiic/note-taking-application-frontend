@@ -1,0 +1,12 @@
+<mat-card class="p20">
+  <mat-card-title>{{title}}</mat-card-title>
+  <mat-card-content>
+    <div mat-dialog-content>
+      <p>{{message}}</p>
+    </div>
+  </mat-card-content>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onDismiss()">No</button>
+    <button mat-raised-button color="primary" (click)="onConfirm()">Yes</button>
+  </div>
+</mat-card>

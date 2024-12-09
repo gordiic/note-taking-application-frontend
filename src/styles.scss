@@ -2,3 +2,16 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+$success-color: #4caf50;
+$error-color: #f44336;
+
+.custom-snack-bar {
+  background-color: $success-color;
+  color: white;
+}
+
+.custom-error-snack-bar {
+  background-color: $error-color;
+  color: white;
+}

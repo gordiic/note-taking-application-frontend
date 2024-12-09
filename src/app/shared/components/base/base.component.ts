@@ -2,6 +2,7 @@ import {Directive, OnInit} from '@angular/core';
 import {BaseModel} from '../../models/base.model';
 import {BaseService} from '../../services/base.service';
 import {MatDialog} from '@angular/material/dialog';
+import {ConfirmDialogComponent} from '../confirm-dialog/confirm-dialog.component';
 
 
 @Directive()
@@ -21,7 +22,9 @@ export abstract class BaseComponent<T extends BaseModel> implements OnInit{
   searchEntities(resetPage?: boolean): void {
     this.service
       .getAll()
-      .subscribe(data => this.data = data);
+      .subscribe(data => {
+        this.data = data
+      });
   }
 
 
@@ -32,7 +35,7 @@ export abstract class BaseComponent<T extends BaseModel> implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result && result.value) {
+      if (result) {
         this.searchEntities();
       }
     });
@@ -45,7 +48,7 @@ export abstract class BaseComponent<T extends BaseModel> implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result && result.value) {
+      if (result) {
         this.searchEntities();
       }
     });
@@ -55,13 +58,17 @@ export abstract class BaseComponent<T extends BaseModel> implements OnInit{
     this.details({id: id});
   }
 
-  deleteEntity(id: number): void {
-    /*this.modalService.confirmDelete().onClosed.subscribe(data => {
-      if (data.value) {
-        this.service.deleteEntity(id).subscribe(
+  deleteEntity(id: string): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      disableClose: true,
+      data: { title: "Delete", message: "Are you sure you want to delete entity?" }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.service.delete(id).subscribe(
           () => this.searchEntities()
         );
       }
-    });*/
+    });
   }
 }

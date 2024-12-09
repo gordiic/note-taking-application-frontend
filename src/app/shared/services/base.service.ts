@@ -9,7 +9,7 @@ export abstract class BaseService<T> {
     return this.getHttpClient().post<T>(this.getUrl(parentId), T);
   }
 
-  get(id: number, parentId?: number): Observable<T> {
+  get(id: string, parentId?: number): Observable<T> {
     return this.getHttpClient().get<T>(this.getUrl(parentId) + '/' + id);
   }
 
@@ -21,7 +21,7 @@ export abstract class BaseService<T> {
     return this.getHttpClient().put<T>(this.getUrl(parentId) + '/' + T.id, T);
   }
 
-  delete(id: number, parentId?: number) {
+  delete(id: string, parentId?: number) {
     return this.getHttpClient().delete(this.getUrl(parentId) + '/' + id);
   }
 

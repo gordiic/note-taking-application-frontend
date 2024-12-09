@@ -39,7 +39,6 @@ export class AuthService {
   encryptPassword(password: string) {
     const encrypt = new JSEncrypt();
     encrypt.setPublicKey(environment.PUBLIC_KEY);
-    const a = encrypt.encrypt(password);
     return encrypt.encrypt(password);
   }
 
