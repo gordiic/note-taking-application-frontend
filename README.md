@@ -1,5 +1,31 @@
 # NoteTakingApplicationFrontend
 
+## Description
+The application allows users to add notes. Users can log in to the application.
+After logging in, they can add, view, delete, and modify existing notes.
+User1: username=Nebojsa, password=123456
+User2: username=admin, password=admin
+
+## Requirements
+
+- AngularCLI 19.0.4
+- Node 20.15.1
+
+## Installation
+
+1. Clone repo:
+   git clone https://github.com/gordiic/note-taking-application-frontend.git
+2. npm install
+
+## Application start
+
+1. ng serve
+
+
+
+
+
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.4.
 
 ## Development server

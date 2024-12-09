@@ -9,13 +9,14 @@
           Title is required
         </mat-error>
       </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Content</mat-label>
-        <textarea matInput placeholder="Content" formControlName="content"></textarea>
-        <mat-error *ngIf="form.get('content')?.hasError('required')">
-          Content is required
-        </mat-error>
-      </mat-form-field>
+      <div class="NgxEditor__Wrapper">
+        <ngx-editor-menu *ngIf="editor && !readOnly" [editor]="editor"> </ngx-editor-menu>
+        <ngx-editor
+          [editor]="editor"
+          [placeholder]="'Type text...'"
+          [formControlName]="'content'"
+        ></ngx-editor>
+      </div>
       <button mat-raised-button color="primary" type="button" (click)="close()">Cancel</button>
       <button *ngIf="!readOnly" [disabled]="form.invalid || form.pristine" mat-raised-button color="primary" type="submit">Save</button>
     </form>

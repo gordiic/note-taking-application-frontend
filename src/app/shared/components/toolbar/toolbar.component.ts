@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {MatDialog} from '@angular/material/dialog';
 import {AuthService} from '../../services/auth.service';
 
 @Component({
@@ -13,9 +11,7 @@ import {AuthService} from '../../services/auth.service';
 export class ToolbarComponent {
   displayedColumns: string[] = ['id', 'title', 'content', 'actions'];
 
-  constructor(private authService: AuthService, private router: Router) {
-  }
-
+  constructor(private authService: AuthService, private router: Router) {}
   onLogOut(): void {
     this.authService.logout();
     this.router.navigate(['/login']);

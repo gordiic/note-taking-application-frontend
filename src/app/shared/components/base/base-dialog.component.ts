@@ -1,16 +1,15 @@
-import {Directive, OnInit} from '@angular/core';
+import {Directive} from '@angular/core';
 import {BaseModel} from '../../models/base.model';
-import {FormGroup, Validators} from '@angular/forms';
+import {FormGroup} from '@angular/forms';
 import {BaseService} from '../../services/base.service';
 import {EMPTY, Observable} from 'rxjs';
 import {MatDialogRef} from '@angular/material/dialog';
-import {Note} from '../../models/note.model';
 
 @Directive()
 export abstract class BaseDialogComponent<T extends BaseModel> {
   data?: T;
   form?: FormGroup;
-  readOnly?: boolean = false;
+  readOnly: boolean = false;
   protected constructor(
     protected params: any,
     protected service: BaseService<T>,
@@ -53,7 +52,6 @@ export abstract class BaseDialogComponent<T extends BaseModel> {
     if (!this.form?.valid) {
       return EMPTY;
     }
-
     return this.form.value.id
       ? this.service.update(this.form.value)
       : this.service.create(this.form.value);

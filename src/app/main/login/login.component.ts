@@ -20,8 +20,6 @@ export class LoginComponent{
     });
   }
 
-  ngOnInit(): void {}
-
   onSubmit() {
     const username = this.loginForm.get('username')?.value;
     const password  = this.loginForm.get('password')?.value;

@@ -16,19 +16,17 @@ export class AuthInterceptor implements HttpInterceptor {
     if (excludedUrls.some(url => req.url.includes(url))) {
       return next.handle(req).pipe(
         tap(event => {
-          // Proveravanje da li je odgovor uspešan
           if (event.type === HttpEventType.Response) {
             this.notificationService.showNotification('Successfully logged in!', true);
           }
         }),
         catchError(error => {
-          // U slučaju greške
           if (error.status === 401) {
             this.notificationService.showNotification('Unauthorized!', false);
           } else {
             this.notificationService.showNotification('Error happened.', false);
           }
-          return throwError(error); // Ponovo bacite grešku nakon obrade
+          return throwError(error);
         })
       );
     } else {
@@ -37,14 +35,12 @@ export class AuthInterceptor implements HttpInterceptor {
         headers: req.headers.set('Authorization', 'Basic ' + btoa(credentials.username + ':' + credentials.password))
       });
       return next.handle(authReq).pipe(
-
         tap(event => {
           if (authReq.method!=="GET" && event.type === HttpEventType.Response) {
             this.notificationService.showNotification('Request completed successfully!', true);
           }
         }),
         catchError(error => {
-          // U slučaju greške
           if (error.status === 401) {
             this.notificationService.showNotification('Unauthorized.', false);
           } else {

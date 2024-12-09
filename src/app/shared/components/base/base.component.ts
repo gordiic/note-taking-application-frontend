@@ -4,16 +4,12 @@ import {BaseService} from '../../services/base.service';
 import {MatDialog} from '@angular/material/dialog';
 import {ConfirmDialogComponent} from '../confirm-dialog/confirm-dialog.component';
 
-
 @Directive()
-// tslint:disable-next-line:directive-class-suffix
 export abstract class BaseComponent<T extends BaseModel> implements OnInit{
   data: Array<T> = new Array<T>();
-
   editComponent: any;
 
-  protected constructor(protected service: BaseService<T>, protected dialog: MatDialog) {
-  }
+  protected constructor(protected service: BaseService<T>, protected dialog: MatDialog) {}
 
   ngOnInit() {
     this.searchEntities(true);

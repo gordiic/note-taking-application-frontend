@@ -21,6 +21,7 @@ import {MatIcon} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {ToolbarComponent} from './shared/components/toolbar/toolbar.component';
 import {ConfirmDialogComponent} from './shared/components/confirm-dialog/confirm-dialog.component';
+import {NgxEditorModule} from 'ngx-editor';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {ConfirmDialogComponent} from './shared/components/confirm-dialog/confirm
     MatHeaderCellDef,
     MatCellDef,
     MatTableModule,
-    MatToolbarModule
+    MatToolbarModule,
+    NgxEditorModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),

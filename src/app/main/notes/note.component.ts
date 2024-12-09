@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder} from '@angular/forms';
 import {Router} from '@angular/router';
 import {NoteService} from './note.service';
 import {BaseComponent} from '../../shared/components/base/base.component';
@@ -14,7 +14,7 @@ import {NoteDialogComponent} from './dialog/note-dialog.component';
   styleUrl:'./note.component.scss'
 })
 export class NoteComponent extends BaseComponent<Note>{
-  displayedColumns: string[] = ['id', 'title', 'content', 'actions'];
+  displayedColumns: string[] = ['id', 'title', 'actions'];
 
   constructor(private noteService: NoteService, dialog: MatDialog, private fb: FormBuilder, private router: Router) {
     super(noteService, dialog);
