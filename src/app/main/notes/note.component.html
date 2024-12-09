@@ -1,11 +1,31 @@
 <div class="center-screen">
   <mat-card appearance="raised" class="w80">
     <mat-card-content class="p20">
-      <div class="button-container">
-        <button (click)="onAdd()" mat-fab extended>
-          <mat-icon>add</mat-icon>
-          Add new
-        </button>
+      <div class="row">
+        <div class="col">
+          <div class="button-container">
+            <button (click)="onAdd()" mat-fab extended>
+              <mat-icon>add</mat-icon>
+              Add new
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <form [formGroup]="searchForm" class="form-container" (ngSubmit)="onSearch()">
+            <mat-form-field appearance="fill">
+
+              <mat-label>Term</mat-label>
+              <input matInput placeholder="Term" formControlName="term">
+              <mat-error *ngIf="searchForm.get('term')?.hasError('required')">
+                Title is required
+              </mat-error>
+            </mat-form-field>
+            <button type="submit" mat-fab extended>
+              <mat-icon>search</mat-icon>
+              Search
+            </button>
+          </form>
+        </div>
       </div>
     </mat-card-content>
     <mat-card-content>
@@ -47,6 +67,8 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
+      <mat-paginator [length]="totalElements" [pageSizeOptions]="pageSizes" (page)="onPageChange($event)" aria-label="Select page">
+      </mat-paginator>
     </mat-card-content>
   </mat-card>
 </div>

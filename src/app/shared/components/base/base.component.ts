@@ -3,13 +3,25 @@ import {BaseModel} from '../../models/base.model';
 import {BaseService} from '../../services/base.service';
 import {MatDialog} from '@angular/material/dialog';
 import {ConfirmDialogComponent} from '../confirm-dialog/confirm-dialog.component';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {PageEvent} from '@angular/material/paginator';
 
 @Directive()
 export abstract class BaseComponent<T extends BaseModel> implements OnInit{
   data: Array<T> = new Array<T>();
   editComponent: any;
+  searchForm: FormGroup;
 
-  protected constructor(protected service: BaseService<T>, protected dialog: MatDialog) {}
+  page: number = 0;
+  size: number = 5;
+  totalElements = 0;
+  pageSizes = [5,10,20,50]
+
+  protected constructor(protected service: BaseService<T>, protected dialog: MatDialog, protected fb: FormBuilder) {
+    this.searchForm = this.fb.group({
+      term: [null, []]
+    });
+  }
 
   ngOnInit() {
     this.searchEntities(true);
@@ -17,9 +29,10 @@ export abstract class BaseComponent<T extends BaseModel> implements OnInit{
 
   searchEntities(resetPage?: boolean): void {
     this.service
-      .getAll()
+      .getAllPagination(this.page, this.size)
       .subscribe(data => {
-        this.data = data
+        this.data = data.content
+        this.totalElements = data.totalElements;
       });
   }
 
@@ -66,5 +79,25 @@ export abstract class BaseComponent<T extends BaseModel> implements OnInit{
         );
       }
     });
+  }
+
+  onQuickSearch(): void {
+    if(this.searchForm && this.searchForm.get('term') !== null){
+      if(this.searchForm?.get('term')?.value !== ''){
+        this.service.search(this.searchForm?.get('term')?.value).subscribe(data=>{
+          if(data){
+            this.data = data;
+          }
+        })
+      }
+    }
+  }
+
+  onPageChange(event: PageEvent) {
+    console.log(event)
+    this.size = event.pageSize;
+    this.page = event.pageIndex;
+
+    this.searchEntities();
   }
 }

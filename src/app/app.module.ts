@@ -22,6 +22,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {ToolbarComponent} from './shared/components/toolbar/toolbar.component';
 import {ConfirmDialogComponent} from './shared/components/confirm-dialog/confirm-dialog.component';
 import {NgxEditorModule} from 'ngx-editor';
+import {MatPaginator} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {NgxEditorModule} from 'ngx-editor';
     MatCellDef,
     MatTableModule,
     MatToolbarModule,
-    NgxEditorModule
+    NgxEditorModule,
+    MatPaginator
   ],
   providers: [
     provideClientHydration(withEventReplay()),

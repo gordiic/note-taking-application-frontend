@@ -44,3 +44,14 @@ section {
   justify-content: center;
   height: 100vh;
 }
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -15px;
+}
+
+.col {
+  flex: 1;
+  padding: 0 15px;
+}

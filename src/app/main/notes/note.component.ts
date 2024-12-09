@@ -16,8 +16,8 @@ import {NoteDialogComponent} from './dialog/note-dialog.component';
 export class NoteComponent extends BaseComponent<Note>{
   displayedColumns: string[] = ['id', 'title', 'actions'];
 
-  constructor(private noteService: NoteService, dialog: MatDialog, private fb: FormBuilder, private router: Router) {
-    super(noteService, dialog);
+  constructor(private noteService: NoteService, dialog: MatDialog, fb: FormBuilder, private router: Router) {
+    super(noteService, dialog, fb);
     this.editComponent = NoteDialogComponent;
   }
 
@@ -35,5 +35,9 @@ export class NoteComponent extends BaseComponent<Note>{
 
   onDelete(id: string): void {
     this.deleteEntity(id)
+  }
+
+  onSearch(): void {
+    this.onQuickSearch();
   }
 }
