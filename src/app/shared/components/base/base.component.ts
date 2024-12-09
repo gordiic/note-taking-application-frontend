@@ -94,10 +94,8 @@ export abstract class BaseComponent<T extends BaseModel> implements OnInit{
   }
 
   onPageChange(event: PageEvent) {
-    console.log(event)
     this.size = event.pageSize;
     this.page = event.pageIndex;
-
     this.searchEntities();
   }
 }
